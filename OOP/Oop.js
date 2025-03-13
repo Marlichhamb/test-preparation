@@ -167,3 +167,100 @@ mazda.width = 80
 console.log(mazda.width)
 mazda.message()
 
+// Полиморфизм
+
+class Animal {
+
+    constructor(name) {
+        this.name = name
+    }
+    isMakingSound() {
+        console.log(`${this.name} is making a sound..`)
+    }
+}
+class Dog extends Animal {
+    isMakingSound() {
+        super.isMakingSound();
+        console.log(`${this.name} is barking`)
+    }
+}
+
+class Cat extends Animal {
+
+    isMakingSound() {
+        super.isMakingSound();
+        console.log(`${this.name} is mewing`)
+    }
+
+}
+
+const dog1 = new Dog('Nika')
+const cat1 = new Cat('Yasha')
+dog1.isMakingSound()
+cat1.isMakingSound()
+
+
+// Абстракция
+
+class Device {
+
+    constructor(name) {
+        if (new.target === Device) {
+            throw new Error('It is forbidden to create an instance of an abstract class!')
+        }
+        this.name = name
+        this.isOn = false
+    }
+
+    turnOn() {
+        throw new Error('You need to create a turnOn() method in the child class!')
+    }
+
+    turnOff() {
+        throw new Error('You need to create a turnOff() method in the child class!')
+    }
+
+}
+
+class Smartphone extends Device {
+    turnOn() {
+        this.isOn = true
+        console.log(`The smartphone ${this.name} is turned on`)
+    }
+    turnOff() {
+        // super.turnOff()
+        this.isOn = false
+        console.log(`The smartphone ${this.name} is turned off`)
+    }
+
+}
+
+class Laptop extends Device {
+    turnOn() {
+        if (!this.isOn) {
+            this.isOn = true
+            console.log(`The laptop ${this.name} is powered on`)
+        } else {
+            console.log(`The laptop ${this.name} is already powered on`)}
+    }
+    turnOff() {
+        if (this.isOn) {
+            this.isOn = false
+            console.log(`The laptop ${this.name} is powered off`)
+        } else {
+            console.log(`The laptop ${this.name} is already powered off`)
+        }
+    }
+}
+
+// const computer = new Device('Asus')
+
+const iphoneXs = new Smartphone('Iphone Xs')
+
+iphoneXs.turnOn()
+iphoneXs.turnOn()
+
+const asus = new Laptop('Asus Vivobook')
+
+asus.turnOn()
+asus.turnOn()
