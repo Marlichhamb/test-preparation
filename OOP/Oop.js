@@ -264,3 +264,44 @@ const asus = new Laptop('Asus Vivobook')
 
 asus.turnOn()
 asus.turnOn()
+
+
+// Статичные методы
+
+class Uni {
+
+    static courses (name, initialGrade) {
+       return `This is ${name} course and it needs the ${initialGrade} grade to start learn it!!!!`
+    }
+
+}
+
+console.log(Uni.courses('JS', 3))
+
+
+
+class MathUlti {
+    static sum (a, b) {
+        return a + b
+    }
+
+    static multiply (a, b) {
+        return a * b
+    }
+
+    static isEven (num) {
+        if ( num % 2 === 0 ) {
+            console.log('true')
+            return true
+
+        } else {
+            console.log('False')
+            return false
+        }
+    }
+
+}
+
+console.log(MathUlti.sum(1, 8))
+console.log(MathUlti.multiply(1, 8))
+console.log(MathUlti.isEven(6))
