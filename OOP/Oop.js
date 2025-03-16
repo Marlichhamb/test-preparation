@@ -271,7 +271,7 @@ asus.turnOn()
 class Uni {
 
     static courses (name, initialGrade) {
-       return `This is ${name} course and it needs the ${initialGrade} grade to start learn it!!!!`
+       return `This is ${name} course and it needs the ${initialGrade} grade to enroll!!!`
     }
 
 }
@@ -279,8 +279,7 @@ class Uni {
 console.log(Uni.courses('JS', 3))
 
 
-
-class MathUlti {
+class MathUtil {
     static sum (a, b) {
         return a + b
     }
@@ -302,6 +301,64 @@ class MathUlti {
 
 }
 
-console.log(MathUlti.sum(1, 8))
-console.log(MathUlti.multiply(1, 8))
-console.log(MathUlti.isEven(6))
+console.log(MathUtil.sum(1, 8))
+console.log(MathUtil.multiply(1, 8))
+console.log(MathUtil.isEven(6))
+
+
+//Прототипы
+
+const vehicle  = {
+    canMove: true,
+    movingType: typeOfTheRoad => console.log(`The vehicle is moving on the ${typeOfTheRoad}`)
+}
+
+const car = {
+    canStop: true
+}
+
+Object.setPrototypeOf(car, vehicle)
+
+console.log(car.canMove)
+car.movingType('Road')
+
+
+// Принципы SOLID
+
+//1. SOLID
+
+class Report {
+    constructor(title, content) {
+        this.title = title;
+        this.content = content;
+    }
+}
+
+class SaveToFile {
+    saveToFile(title) {
+        console.log(`Saving report: ${title}.txt`);
+    }
+}
+
+class SendEmail {
+    sendEmail(title) {
+        console.log(`Sending report ${title} by email`);
+    }
+}
+
+class PrintReport {
+    printReport(content) {
+        console.log(`Printing: ${content}`);
+    }
+}
+
+const report = new Report('IQOS', 'I love IQOS');
+
+const save = new SaveToFile();
+const sendEmail = new SendEmail();
+const print = new PrintReport();
+
+save.saveToFile(report.title);
+sendEmail.sendEmail(report.title);
+print.printReport(report.content)
+
